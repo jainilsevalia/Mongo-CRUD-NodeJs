@@ -1,12 +1,13 @@
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+dotenv.config();
 
-const connectionString =
-  "mongodb+srv://jainilsev25:OpSfiiYjaHQPQTTp@cluster0.j7trhn4.mongodb.net/test";
+const connectionString = process.env.MONGO_URI;
 
 mongoose
   .connect(connectionString)
   .then(() => {
-    console.log("Database Connection sucessful !!");
+    console.log("Database Connection successful !!");
   })
   .catch((error) => {
     console.log(error);
@@ -23,6 +24,4 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const User = mongoose.model("User", userSchema);
-
-module.exports = { User };
+module.exports = mongoose.model("user", userSchema);

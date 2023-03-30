@@ -1,7 +1,7 @@
 const express = require("express");
 const app = express();
 const uuid = require("uuid");
-const { User } = require("./config");
+const User = require("./config");
 
 app.listen(3000);
 app.use(express.json());
@@ -92,20 +92,19 @@ app.post("/add", async (req, res) => {
       });
     } else {
       try {
-        await User.create({
-          id: uuid.v4(),
+        const newUser = await User.create({
           email: req.body.email,
-          firstname: req.body.firstName,
+          firstName: req.body.firstName,
         });
         res.status(201).json({
           message: "User added",
           success: true,
-          users,
+          newUser,
         });
       } catch (err) {
         res.status(400).json({
           success: false,
-          message: "Facing Error while creating User",
+          message: err.message,
         });
       }
     }
@@ -117,13 +116,13 @@ app.post("/add", async (req, res) => {
 app.get("/user/:id", async (req, res) => {
   try {
     const userId = req.params.id;
-    const user = await findById(userId);
+    const user = await User.findById(userId);
     if (user === undefined || user === null) {
       res.status(404).json({ success: false, message: "User not found" });
     } else {
       res
         .status(200)
-        .json({ success: true, user: user, message: "User Found" });
+        .json({ success: true, user: user, message: "User Found!! :)" });
     }
   } catch (err) {
     res.status(500).json({ success: false, message: err.message });
