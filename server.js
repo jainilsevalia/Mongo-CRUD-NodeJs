@@ -8,23 +8,23 @@ app.use(express.json());
 
 const endPoints = [
   {
-    "get-list-of-users": "https://crud-mongodb.onrender.com//users",
+    "get-list-of-users": "https://crud-mongodb.onrender.com/users",
     "request-method": "GET",
   },
   {
-    "add-user": "https://crud-mongodb.onrender.com//add",
+    "add-user": "https://crud-mongodb.onrender.com/add",
     "request-method": "POST",
   },
   {
-    "update-user-by-id": "https://crud-mongodb.onrender.com//update/:id",
+    "update-user-by-id": "https://crud-mongodb.onrender.com/update/:id",
     "request-method": "PUT",
   },
   {
-    "get-user-by-id": "https://crud-mongodb.onrender.com//user/:id",
+    "get-user-by-id": "https://crud-mongodb.onrender.com/user/:id",
     "request-method": "GET",
   },
   {
-    "delete-user-by-id": "https://crud-mongodb.onrender.com//delete/:id",
+    "delete-user-by-id": "https://crud-mongodb.onrender.com/delete/:id",
     "request-method": "DELETE",
   },
 ];
